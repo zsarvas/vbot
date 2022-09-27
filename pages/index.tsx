@@ -22,7 +22,7 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
     var sanitizedName = name.split("#",1)
     
     rocketData.data[index] = {
-    id : id,
+    id : index + 1,
       Name: sanitizedName[0],
       MMR: mmr,
       Wins: wins,
@@ -67,7 +67,6 @@ export function TableReviews({ data }: PlayerData) {
     const gameLoss = (row.winRate.Losses / totalGames) * 100;
 
     return (
-      
       <><Head>
         <title>Versus Bot</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -115,19 +114,17 @@ export function TableReviews({ data }: PlayerData) {
               ]} />
           </td>
         </tr></>
-    
+        
     );
   });
 
   return (
-      <>
-      <h1 className={styles.title}><a>4 Man&apos;s Leaderboard</a>
-      </h1>
-      <ScrollArea>
+      <><h1 className={styles.title}><a>4 Man&apos;s Leaderboard</a>
+    </h1><ScrollArea.Autosize maxHeight={500} sx={{ maxWidth: 1800 }} mx="auto">
         <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
           <thead>
             <tr>
-              <th>Id</th>
+              <th>Position</th>
               <th>Name</th>
               <th>MMR</th>
               <th>Wins</th>
@@ -138,8 +135,7 @@ export function TableReviews({ data }: PlayerData) {
           </thead>
           <tbody>{rows}</tbody>
         </Table>
-      </ScrollArea>
-    <footer className={styles.footer}>
+      </ScrollArea.Autosize><footer className={styles.footer}>
         <a
           href=""
           target="_blank"
