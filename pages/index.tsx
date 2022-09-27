@@ -67,6 +67,7 @@ export function TableReviews({ data }: PlayerData) {
     const gameLoss = (row.winRate.Losses / totalGames) * 100;
 
     return (
+      
       <><Head>
         <title>Versus Bot</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -120,8 +121,9 @@ export function TableReviews({ data }: PlayerData) {
   });
 
   return (
-    <><main className={styles.content}>
-      <h1 className={styles.title}>4 Man&apos;s Leaderboard
+    <div className="container">
+      <main className={styles.content}>
+      <h1 className={styles.title}><a>4 Man&apos;s Leaderboard</a>
       </h1>
       <ScrollArea>
         <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
@@ -139,7 +141,7 @@ export function TableReviews({ data }: PlayerData) {
           <tbody>{rows}</tbody>
         </Table>
       </ScrollArea>
-    </main><footer className={styles.footer}>
+     </main><footer className={styles.footer}>
         <a
           href=""
           target="_blank"
@@ -150,7 +152,8 @@ export function TableReviews({ data }: PlayerData) {
             <Image src="/logo.png" width={48} height={32} />
           </span>
         </a>
-      </footer></>
+      </footer>
+      </div>
   );
 }
 
