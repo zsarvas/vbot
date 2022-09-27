@@ -120,7 +120,7 @@ export function TableReviews({ data }: PlayerData) {
   });
 
   return (
-    <><main className={styles.main}>
+    <><main className={styles.content}>
       <h1 className={styles.title}>4 Man&apos;s Leaderboard
       </h1>
       <ScrollArea>
