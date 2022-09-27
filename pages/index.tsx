@@ -120,8 +120,7 @@ export function TableReviews({ data }: PlayerData) {
   });
 
   return (
-    <div className="container">
-      <main className={styles.container}>
+      <>
       <h1 className={styles.title}><a>4 Man&apos;s Leaderboard</a>
       </h1>
       <ScrollArea>
@@ -140,7 +139,7 @@ export function TableReviews({ data }: PlayerData) {
           <tbody>{rows}</tbody>
         </Table>
       </ScrollArea>
-     </main><footer className={styles.footer}>
+    <footer className={styles.footer}>
         <a
           href=""
           target="_blank"
@@ -151,8 +150,8 @@ export function TableReviews({ data }: PlayerData) {
             <Image src="/logo.png" width={48} height={32} />
           </span>
         </a>
-      </footer>
-      </div>
+      </footer></>
+      
   );
 }
 
