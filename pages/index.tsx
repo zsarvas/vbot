@@ -115,14 +115,13 @@ export function TableReviews({ data }: PlayerData) {
               ]} />
           </td>
         </tr></>
-      
-       
+    
     );
   });
 
   return (
     <div className="container">
-      <main className={styles.content}>
+      <main className={styles.container}>
       <h1 className={styles.title}><a>4 Man&apos;s Leaderboard</a>
       </h1>
       <ScrollArea>
