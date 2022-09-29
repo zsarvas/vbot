@@ -10,6 +10,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import HeaderTabs, { HeaderTabStrings } from '../components/index'
 
 
+
 const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element => {
 
   const rocketData: PlayerData = {
@@ -45,6 +46,7 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
         {
             tab: 'Home',
             component: (
+              
                 <div></div>
             )
         },
@@ -70,10 +72,10 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
 
 
   return (
-    //allTheData
     <div>
     {/* Perhaps make a hook to handle view switching here */}
     {/* Consider importing my library @ritterg/mini-machina */}
+    
     <HeaderTabs
         tabInfo={tabsWithPanels}
         user={{ name: "2CDs", image: "" }}
@@ -81,11 +83,10 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
         setActiveTab={setActiveTab}
     />
     {renderPanel()}
-
-<p>
-  {allTheData}
-</p>
-</div>
+      <p>
+    {allTheData}
+      </p>
+    </div>
   )
 }
 
@@ -188,19 +189,20 @@ export function TableReviews({ data }: PlayerData) {
           </thead>
           <tbody>{rows}</tbody>
         </Table>
-      </ScrollArea.Autosize><footer className={styles.footer}>
-        <a
-          href=""
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by {'2CDs'}
-          <span className={styles.logo}>
-            <Image src="/logo.png" width={48} height={32} />
-          </span>
-        </a>
-      </footer></>
-      
+      </ScrollArea.Autosize>
+        <footer className={styles.footer}>
+          <a
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Powered by {'2CDs'}
+            <span className={styles.logo}>
+              <Image src="/logo.png" width={34} height={32} />
+            </span>
+          </a>
+        </footer>
+      </>
   );
 }
 
