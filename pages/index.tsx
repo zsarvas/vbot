@@ -53,7 +53,7 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
 
   let allTheData = TableReviews(rocketData)
 
-  const [activeTab, setActiveTab] = React.useState<HeaderTabStrings>("Home")
+  const [activeTab, setActiveTab] = React.useState<HeaderTabStrings>("2v2 Leader Board")
 
     const tabsWithPanels = [
         {
@@ -66,7 +66,7 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
         {
             tab: '2v2 Leader Board',
             component: (
-                <div>2v2 Panel</div>
+                <div></div>
             )
         },
         {
