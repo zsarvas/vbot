@@ -8,6 +8,7 @@ import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import HeaderTabs, { HeaderTabStrings } from '../components/index'
+import Script from 'next/script';
 
 
 
@@ -21,11 +22,12 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
     
     //destructure the object to give nicer aliases for the iterations.
     const {id: id, Name: name, MMR: mmr, Wins: wins, Losses: losses, MatchUID: matchuid} = data;
+    var position = 1
 
     var sanitizedName = name.split("#",1)
     
     rocketData.data[index] = {
-    id : index + 1,
+    id : position,
       Name: sanitizedName[0],
       MMR: mmr,
       Wins: wins,
@@ -36,7 +38,7 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
     if (wins == 0 && losses == 0) {
       rocketData.data.splice(index, 1)
     }
-    console.log(rocketData.data)
+    position++
   }, )
 
   let allTheData = TableReviews(rocketData)
@@ -83,8 +85,18 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
         activeTab={activeTab}
         setActiveTab={setActiveTab}
     />
+    
     {renderPanel()}
       <p>
+      <Script id="google-tag-manager" strategy="afterInteractive">
+      {`
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MRLS2WS');
+      `}
+    </Script>
     {allTheData}
       </p>
     </div>
