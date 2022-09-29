@@ -24,7 +24,6 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
     
     //destructure the object to give nicer aliases for the iterations.
     const {id: id, Name: name, MMR: mmr, Wins: wins, Losses: losses, MatchUID: matchuid} = data;
-    
 
     var sanitizedName = name.split("#",1)
     
@@ -39,9 +38,10 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
 
     if (wins == 0 && losses == 0) {
       rocketData.data.splice(index, 1)
+      position--
     }
 
-    if (index != 0) {
+    if (index != 0 && rocketData.data[index] && rocketData.data[index - 1]) {
       if (rocketData.data[index].MMR == rocketData.data[index - 1].MMR) {
         rocketData.data[index].id = rocketData.data[index - 1].id
       }
@@ -50,8 +50,6 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
     position++
     
   }, )
-
-
 
   let allTheData = TableReviews(rocketData)
 
