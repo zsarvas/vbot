@@ -1,5 +1,7 @@
 .container {
   padding: 0% 5%;
+  width: 100px;
+  height: 100px;
   display: contents;
   justify-content: center;
   align-items: center;

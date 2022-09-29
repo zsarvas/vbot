@@ -7,8 +7,10 @@ import Image from 'next/image'
 import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import HeaderTabs, { HeaderTabStrings } from '../components/index'
 
-const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+
+const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element => {
 
   const rocketData: PlayerData = {
     data : [] 
@@ -33,8 +35,53 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
 
   let allTheData = TableReviews(rocketData)
 
+  const [activeTab, setActiveTab] = React.useState<HeaderTabStrings>("Home")
+
+    const tabsWithPanels = [
+        {
+            tab: 'Home',
+            component: (
+                <div>Home Panel</div>
+            )
+        },
+        {
+            tab: '2v2 Leader Board',
+            component: (
+                <div>2v2 Panel</div>
+            )
+        },
+        {
+            tab: '3v3 Leader Board',
+            component: (
+                <div>3v3 Panel</div>
+            )
+        }
+    ]
+
+    const renderPanel = (): JSX.Element => {
+        return tabsWithPanels
+            .find(tab => tab.tab === activeTab)?.component ??
+            (<div>Component Not found</div>)
+    }
+
+
   return (
-    allTheData
+    //allTheData
+    <div>
+    {/* Perhaps make a hook to handle view switching here */}
+    {/* Consider importing my library @ritterg/mini-machina */}
+    <HeaderTabs
+        tabInfo={tabsWithPanels}
+        user={{ name: "2CDs", image: "" }}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+    />
+    {renderPanel()}
+
+<p>
+  {allTheData}
+</p>
+</div>
   )
 }
 
