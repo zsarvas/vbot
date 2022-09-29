@@ -41,7 +41,7 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
         {
             tab: 'Home',
             component: (
-                <div>Home Panel</div>
+                <div></div>
             )
         },
         {
