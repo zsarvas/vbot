@@ -31,6 +31,10 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
       Losses: losses,
       winRate: { Wins: wins, Losses: losses} 
     }
+
+    if (rocketData.data[index].Wins == 0 && rocketData.data[index].Losses == 0) {
+      rocketData.data.slice(index, 1)
+    }
   }, )
 
   let allTheData = TableReviews(rocketData)
