@@ -135,9 +135,11 @@ export function TableReviews({ data }: PlayerData) {
         </MantineProvider>
 
           <td>{row.id}</td>
-          <Anchor<'a'> size="sm" onClick={(event) => event.preventDefault()}>
-            <td>{row.Name}</td>
-          </Anchor>
+          <td>
+            <Anchor<'a'> size="sm" onClick={(event) => event.preventDefault()}>
+              {row.Name}
+            </Anchor>
+          </td>
           <td>{row.MMR.toFixed(0)}</td>
           <td>{row.Wins}</td>
           <td>{row.Losses}</td>
