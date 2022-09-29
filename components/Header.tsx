@@ -125,7 +125,7 @@ export default function HeaderTabs(props: HeaderTabsProps): JSX.Element {
                 <Group position="apart">
                     <span className={classes.flex}>
                         <Image
-                            src="/public/logo.png"
+                            src="/logo.png"
                             height={28}
                             width={28}
                             alt=""
