@@ -198,7 +198,7 @@ export function TableReviews({ data }: PlayerData) {
 
   return (
       <><h1 className={styles.title}><a>4 Man&apos;s Leaderboard</a>
-    </h1><ScrollArea.Autosize maxHeight={500} sx={{ maxWidth: 1800 }} mx="auto">
+    </h1><ScrollArea.Autosize maxHeight={1800} sx={{ maxWidth: 1800 }} mx="auto">
         <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
           <thead>
             <tr>
