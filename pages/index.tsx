@@ -23,7 +23,7 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
   data!.forEach(function(data: any, index: any) {
     
     //destructure the object to give nicer aliases for the iterations.
-    const {id: id, Name: name, MMR: mmr, Wins: wins, Losses: losses, MatchUID: matchuid, DiscordID: discordid} = data;
+    const {id: id, Name: name, MMR: mmr, Wins: wins, Losses: losses, MatchUID: matchuid, DiscordId: discordid} = data;
 
     var sanitizedName = name.split("#",1)
     
