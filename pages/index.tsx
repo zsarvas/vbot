@@ -138,17 +138,6 @@ export function TableReviews({ data }: PlayerData) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/logo.png" />
       </Head><tr key={row.id}>
-      <Script id="google-tag-manager" strategy="afterInteractive">
-      {`
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MRLS2WS');
-      `}
-    </Script>
-        
-
       <MantineProvider
           withGlobalStyles
           withNormalizeCSS
@@ -234,7 +223,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const supabase = createClient("https://zywthnmeikffxbzusxkb.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d3Robm1laWtmZnhienVzeGtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjI2NzIxODYsImV4cCI6MTk3ODI0ODE4Nn0.g8Nam0FhgnGb2-NFH3eGLc-GvUBuXBfE2RwtutKh6Zo")
     
   // Make a request
-  let { data: rocketleague, error } = await supabase.from('rocketleague_season1').select('*').order('MMR', {ascending: false})
+  let { data: rocketleague, error } = await supabase.from('rocketleague').select('*').order('MMR', {ascending: false})
 
     return {
       props: {
