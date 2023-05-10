@@ -9,8 +9,9 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Page title</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <title>VersusBot</title>
+        
+        <link rel="icon" type="image/png" sizes="32x32" href="/public/logo.png"/>
       </Head>
 
       <MantineProvider
