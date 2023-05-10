@@ -8,7 +8,6 @@ import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import HeaderTabs, { HeaderTabStrings } from '../components/index'
-import Script from 'next/script';
 
 
 
@@ -160,10 +159,10 @@ export function TableReviews({ data }: PlayerData) {
           <td>{plusMinus}</td>
           <td>
             <Group position="apart">
-              <Text size="xs" color="teal" weight={700}>
+              <Text size="xl" color="teal" weight={700}>
                 {gameWin.toFixed(0)}%
               </Text>
-              <Text size="xs" color="red" weight={700}>
+              <Text size="xl" color="red" weight={700}>
                 {gameLoss.toFixed(0)}%
               </Text>
             </Group>
@@ -172,7 +171,7 @@ export function TableReviews({ data }: PlayerData) {
               sections={[
                 {
                   value: gameWin,
-                  color: theme.colorScheme === 'dark' ? theme.colors.teal[9] : theme.colors.teal[6],
+                  color: theme.colorScheme === 'light' ? theme.colors.teal[9] : theme.colors.teal[6],
                 },
                 {
                   value: gameLoss,
@@ -223,7 +222,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const supabase = createClient("https://zywthnmeikffxbzusxkb.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d3Robm1laWtmZnhienVzeGtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjI2NzIxODYsImV4cCI6MTk3ODI0ODE4Nn0.g8Nam0FhgnGb2-NFH3eGLc-GvUBuXBfE2RwtutKh6Zo")
     
   // Make a request
-  let { data: rocketleague, error } = await supabase.from('rocketleague').select('*').order('MMR', {ascending: false})
+  let { data: rocketleague, error } = await supabase.from('rocketleague_season1').select('*').order('MMR', {ascending: false})
 
     return {
       props: {
