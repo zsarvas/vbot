@@ -24,6 +24,9 @@ const Home : NextPage = ({ data }: InferGetServerSidePropsType<typeof getServerS
     //destructure the object to give nicer aliases for the iterations.
     const {id: id, Name: name, MMR: mmr, Wins: wins, Losses: losses, MatchUID: matchuid, DiscordId: discordid} = data;
 
+    console.log(data)
+    console.log("look at me")
+
     var sanitizedName = name.split("#",1)
     
     rocketData.data[index] = {
@@ -222,7 +225,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const supabase = createClient("https://zywthnmeikffxbzusxkb.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d3Robm1laWtmZnhienVzeGtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjI2NzIxODYsImV4cCI6MTk3ODI0ODE4Nn0.g8Nam0FhgnGb2-NFH3eGLc-GvUBuXBfE2RwtutKh6Zo")
     
   // Make a request
-  let { data: rocketleague, error } = await supabase.from('rocketleague_season1').select('*').order('MMR', {ascending: false})
+  let { data: rocketleague, error } = await supabase.from('rocketleague').select('*').order('MMR', {ascending: false})
 
     return {
       props: {
