@@ -19,7 +19,6 @@ const Home : NextPage = ({ data }: HomeProps): JSX.Element => {
       {
           tab: 'Home',
           component: (
-            
               <div></div>
           )
       },

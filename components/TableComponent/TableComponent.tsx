@@ -19,7 +19,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const TableComponent = ({ playerData }: TableProps): JSX.Element => {
-    console.log(playerData);
     const { classes, theme } = useStyles();
 
     return (
@@ -52,7 +51,7 @@ const TableComponent = ({ playerData }: TableProps): JSX.Element => {
                                     const gameLosses = ( player.Losses / ( player.Wins + player.Losses ) ) * 100;
 
                                     return (
-                                        <tr>
+                                        <tr key={player.Name}>
                                             <td>{position}</td>
                                             <td>
                                                 <a href="">
