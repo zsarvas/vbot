@@ -8,12 +8,11 @@ export default function App(props: AppProps) {
 
   return (
     <>
-      <Head>
-        <title>VersusBot</title>
-        
-        <link rel="icon" type="image/png" sizes="32x32" href="/public/logo.png"/>
+    <Head>
+      <title>Versus Bot</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <link rel="icon" href="/logo.png" />
       </Head>
-
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
