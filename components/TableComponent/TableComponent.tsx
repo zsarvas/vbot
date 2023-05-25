@@ -47,11 +47,7 @@ const TableComponent = ({ playerData }: TableProps): JSX.Element => {
                                 playerData.map(( player, idx ) => {
 
                                     if (player.Wins == 0 && player.Losses == 0)
-                                    {
-                                        do {
-                                            idx += 1
-                                        } while (player.Wins == 0 && player.Losses == 0);
-                                    }
+                                        return                                        
 
                                     const position = idx + 1;
                                     const gameWins = ( player.Wins / ( player.Wins + player.Losses ) ) * 100;
