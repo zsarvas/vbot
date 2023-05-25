@@ -5,6 +5,7 @@ import styles from '../../styles/Home.module.css'
 import { createStyles, Table, Progress, Anchor, Text, Group, ScrollArea } from '@mantine/core';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface TableProps {
     playerData: PlayerData[];
@@ -56,10 +57,9 @@ const TableComponent = ({ playerData }: TableProps): JSX.Element => {
                                     return (
                                         <tr key={player.Name}>
                                             <td>{position}</td>
-                                            <td>
-                                                <a href="">
-                                                    {player.Name}
-                                                </a>
+                                            <td><Anchor<'a'> size="sm" onClick={(event) => event.preventDefault()}>
+                                            {player.Name}
+                                             </Anchor>    
                                             </td>
                                             <td>{Math.round(player.MMR)}</td>
                                             <td>{player.Wins}</td>
