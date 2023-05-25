@@ -49,14 +49,6 @@ const Home : NextPage = ({ data }: HomeProps): JSX.Element => {
   )
 }
 
-const useStyles = createStyles((theme) => ({
-  progressBar: {
-    '&:not(:first-of-type)': {
-      borderLeft: `3px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
-    },
-  },
-}));
-
 export const getServerSideProps: GetServerSideProps = async () => {
   const supabase = createClient("https://zywthnmeikffxbzusxkb.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d3Robm1laWtmZnhienVzeGtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjI2NzIxODYsImV4cCI6MTk3ODI0ODE4Nn0.g8Nam0FhgnGb2-NFH3eGLc-GvUBuXBfE2RwtutKh6Zo")
     
