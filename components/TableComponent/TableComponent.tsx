@@ -50,13 +50,12 @@ const TableComponent = ({ playerData }: TableProps): JSX.Element => {
                                     if (player.Wins == 0 && player.Losses == 0)
                                         return                                        
 
-                                    const position = idx + 1;
                                     const gameWins = ( player.Wins / ( player.Wins + player.Losses ) ) * 100;
                                     const gameLosses = ( player.Losses / ( player.Wins + player.Losses ) ) * 100;
 
                                     return (
                                         <tr key={player.Name}>
-                                            <td>{position}</td>
+                                            <td>{idx}</td>
                                             <td><Anchor<'a'> size="sm" onClick={(event) => event.preventDefault()}>
                                             {player.Name}
                                              </Anchor>    
