@@ -6,6 +6,7 @@ import { createStyles, Table, Progress, Anchor, Text, Group, ScrollArea } from '
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Image from 'next/image';
 import Link from 'next/link';
+import { off } from 'process';
 
 interface TableProps {
     playerData: PlayerData[];
@@ -21,6 +22,8 @@ const useStyles = createStyles((theme) => ({
 
 const TableComponent = ({ playerData }: TableProps): JSX.Element => {
     const { classes, theme } = useStyles();
+
+    var offset = 0;
 
     return (
         <div>
@@ -47,21 +50,18 @@ const TableComponent = ({ playerData }: TableProps): JSX.Element => {
                             {
                                 playerData.map(( player, idx ) => {
 
-                                    var counter = 1;
-
                                     if (player.Wins == 0 && player.Losses == 0)
                                     {
-                                        counter-=1;
+                                        offset--;
                                         return
-                                    }     
+                                    }
 
-                                    counter++;
                                     const gameWins = ( player.Wins / ( player.Wins + player.Losses ) ) * 100;
                                     const gameLosses = ( player.Losses / ( player.Wins + player.Losses ) ) * 100;
 
                                     return (
                                         <tr key={player.Name}>
-                                            <td>{counter}</td>
+                                            <td>{offset + idx + 1}</td>
                                             <td><Anchor<'a'> size="sm" onClick={(event) => event.preventDefault()}>
                                             {player.Name}
                                              </Anchor>    
