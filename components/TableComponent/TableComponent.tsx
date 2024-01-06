@@ -33,7 +33,7 @@ const TableComponent = ({ playerData }: TableProps): JSX.Element => {
                         4 Man&apos;s Leaderboard
                     </a>
                 </h1>
-            <ScrollArea.Autosize maxHeight={500} sx={{ maxWidth: 1800 }} mx="auto">
+            <ScrollArea.Autosize maxHeight={1500} sx={{ maxWidth: 1800 }} mx="auto">
                     <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
                         <thead>
                             <tr>
