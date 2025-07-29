@@ -162,7 +162,7 @@ const Login: React.FC = () => {
                 {/* Register Link */}
                 <Group position="center" spacing="xs">
                   <Text size="sm" color="dimmed">
-                    Don't have an account?
+                    Don&apos;t have an account?
                   </Text>
                   <Link href="/register" passHref>
                     <Anchor size="sm">

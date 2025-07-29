@@ -68,7 +68,7 @@ const ProfileIndex: React.FC = () => {
               </Group>
 
               <Text size="sm" color="dimmed" align="center">
-                To view a specific player's profile, click on their name in the leaderboards, 
+                To view a specific player&apos;s profile, click on their name in the leaderboards, 
                 or visit <code>/profile/[player-name]</code> directly.
               </Text>
 
@@ -92,7 +92,7 @@ const ProfileIndex: React.FC = () => {
                 <strong>1.</strong> Navigate to any leaderboard (2v2 or 3v3)
               </Text>
               <Text size="sm">
-                <strong>2.</strong> Click on any player's name in the table
+                <strong>2.</strong> Click on any player&apos;s name in the table
               </Text>
               <Text size="sm">
                 <strong>3.</strong> View their detailed statistics, ranking, and performance metrics

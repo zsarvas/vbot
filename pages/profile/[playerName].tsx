@@ -111,7 +111,7 @@ const PlayerProfile: React.FC = () => {
               <IconUser size={64} color="gray" />
               <Title order={2}>Player Not Found</Title>
               <Text color="dimmed" align="center">
-                The player "{playerName}" was not found in our leaderboards.
+                The player &quot;{playerName}&quot; was not found in our leaderboards.
               </Text>
               <Link href="/" passHref>
                 <Button leftIcon={<IconArrowLeft size={16} />} variant="outline">
