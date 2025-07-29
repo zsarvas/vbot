@@ -1,7 +1,4 @@
-import HeaderTabs, { Tabs } from './Header'
+import HeaderTabs from './Header';
 
-export {
-    HeaderTabs as default
-};
-
-export type { Tabs as HeaderTabStrings };
+export { HeaderTabs as default };
+export type { TabType as HeaderTabStrings } from '../types/PlayerTypes';

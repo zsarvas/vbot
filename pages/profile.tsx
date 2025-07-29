@@ -1,17 +1,15 @@
-import Head from 'next/head'
-import React from 'react'
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-const Profile = (): JSX.Element => {
-    return (
-        <>
-            <Head>
-                <title>Profile</title>
-            </Head>
-            <div>
-                profile page
-            </div>
-        </>
-    )
-}
+const Profile: React.FC = () => {
+  const router = useRouter();
 
-export default Profile
+  useEffect(() => {
+    // Redirect to the new profile index page
+    router.replace('/profile');
+  }, [router]);
+
+  return null;
+};
+
+export default Profile;
