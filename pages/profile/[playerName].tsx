@@ -82,7 +82,6 @@ const PlayerProfile: React.FC = () => {
         </Head>
         <HeaderTabs
           tabInfo={tabsWithPanels}
-          user={user}
           activeTab="Home"
           onTabChange={() => {}}
         />
@@ -101,7 +100,6 @@ const PlayerProfile: React.FC = () => {
         </Head>
         <HeaderTabs
           tabInfo={tabsWithPanels}
-          user={user}
           activeTab="Home"
           onTabChange={() => {}}
         />
@@ -137,7 +135,6 @@ const PlayerProfile: React.FC = () => {
       <div>
         <HeaderTabs
           tabInfo={tabsWithPanels}
-          user={user}
           activeTab="Home"
           onTabChange={() => {}}
         />
