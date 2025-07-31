@@ -1,66 +1,76 @@
-import Head from 'next/head'
-import React, { useState, useEffect } from 'react';
-import { PlayerData } from '../types/PlayerTypes';
-import TableComponent from '../components/TableComponent';
-import { MantineProvider } from '@mantine/core';
-import { createClient } from '@supabase/supabase-js'
-import { createStyles, Table, Progress, Anchor, Text, Group, ScrollArea } from '@mantine/core';
-import Image from 'next/image'
-import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import HeaderTabs, { HeaderTabStrings } from '../components/index'
+import Head from 'next/head';
+import React, { useState, useMemo } from 'react';
+import HeaderTabs from '../components';
+import { HomePanel, Leaderboard2v2Panel, Leaderboard3v3Panel } from '../components/TabPanels';
+import ErrorBoundary from '../components/ErrorBoundary';
+import { useLeaderboard } from '../hooks/useLeaderboard';
+import { TabInfo, TabType } from '../types/PlayerTypes';
+import type { NextPage } from 'next';
 
-type HomeProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+const Home: NextPage = () => {
+  const [activeTab, setActiveTab] = useState<TabType>("Home");
+  const { data: playerData, loading, error, refetch } = useLeaderboard();
 
-const Home : NextPage = ({ data }: HomeProps): JSX.Element => {
-  const [activeTab, setActiveTab] = React.useState<HeaderTabStrings>("2v2 Leader Board")
-  const tabsWithPanels = [
-      {
-          tab: 'Home',
-          component: (
-              <div></div>
-          )
-      },
-      {
-          tab: '2v2 Leader Board',
-          component: (
-              <div></div>
-          )
-      },
-      {
-          tab: '3v3 Leader Board',
-          component: (
-              <div>3v3 Panel</div>
-          )
-      }
-  ]
+  const tabsWithPanels: TabInfo[] = useMemo(() => [
+    {
+      tab: 'Home',
+      component: (
+        <HomePanel 
+          playerData={playerData} 
+          loading={loading} 
+          error={error} 
+        />
+      )
+    },
+    {
+      tab: '2v2 Leader Board',
+      component: (
+        <Leaderboard2v2Panel 
+          playerData={playerData} 
+          loading={loading} 
+          error={error} 
+        />
+      )
+    },
+    {
+      tab: '3v3 Leader Board',
+      component: (
+        <Leaderboard3v3Panel 
+          playerData={playerData} 
+          loading={loading} 
+          error={error} 
+        />
+      )
+    }
+  ], [playerData, loading, error]);
+
+  const currentTabContent = useMemo(() => 
+    tabsWithPanels.find(tab => tab.tab === activeTab)?.component,
+    [tabsWithPanels, activeTab]
+  );
 
   return (
-    <div>
-      <HeaderTabs
+    <ErrorBoundary>
+      <Head>
+        <title>Rocket League Leaderboards</title>
+        <meta name="description" content="Rocket League competitive leaderboards and player statistics" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/logo.png" />
+      </Head>
+
+      <div>
+        <HeaderTabs
           tabInfo={tabsWithPanels}
-          user={{ name: "2CDs", image: "" }}
           activeTab={activeTab}
-          setActiveTab={setActiveTab}
-      />
-      <TableComponent playerData={data as PlayerData[]}/>
-    </div>
-  )
-}
+          onTabChange={setActiveTab}
+        />
+        
+        <main>
+          {currentTabContent}
+        </main>
+      </div>
+    </ErrorBoundary>
+  );
+};
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const supabase = createClient("https://zywthnmeikffxbzusxkb.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d3Robm1laWtmZnhienVzeGtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjI2NzIxODYsImV4cCI6MTk3ODI0ODE4Nn0.g8Nam0FhgnGb2-NFH3eGLc-GvUBuXBfE2RwtutKh6Zo")
-    
-  // Make a request
-  let { data: rocketleague, error } = await supabase.from('rocketleague').select('*').order('MMR', {ascending: false})
-
-    return {
-      props: {
-        data: rocketleague
-      }
-  }
-
-}
-
-export default Home
+export default Home;

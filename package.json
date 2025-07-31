@@ -15,10 +15,16 @@
     "@mantine/hooks": "^5.4.1",
     "@mantine/next": "^5.4.1",
     "@supabase/supabase-js": "^1.35.7",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.2",
+    "jose": "^6.0.12",
+    "jsonwebtoken": "^9.0.2",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tabler": "^1.0.0-alpha.8"
+    "tabler": "^1.0.0-alpha.8",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@tabler/icons": "^1.101.0",
