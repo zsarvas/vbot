@@ -38,7 +38,6 @@ const ProfileIndex: React.FC = () => {
       <div>
         <HeaderTabs
           tabInfo={tabsWithPanels}
-          user={user}
           activeTab="Home"
           onTabChange={() => {}}
         />
