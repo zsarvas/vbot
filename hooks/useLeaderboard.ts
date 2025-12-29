@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
 import { PlayerData } from '../types/PlayerTypes';
 
 interface UseLeaderboardReturn {
@@ -19,14 +18,15 @@ export const useLeaderboard = (): UseLeaderboardReturn => {
       setLoading(true);
       setError(null);
       
-      const { data: rocketleague, error } = await supabase
-        .from('rocketleague')
-        .select('*')
-        .order('MMR', { ascending: false });
+      const response = await fetch('/api/leaderboard');
 
-      if (error) throw error;
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Failed to fetch leaderboard' }));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
       
-      setData(rocketleague || []);
+      const leaderboardData = await response.json();
+      setData(Array.isArray(leaderboardData) ? leaderboardData : []);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch data');
       console.error('Error fetching leaderboard data:', err);
