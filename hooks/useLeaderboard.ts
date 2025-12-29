@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { PlayerData } from '../types/PlayerTypes';
+
+export type LeaderboardType = '1v1' | '2v2';
 
 interface UseLeaderboardReturn {
   data: PlayerData[];
@@ -8,17 +10,17 @@ interface UseLeaderboardReturn {
   refetch: () => void;
 }
 
-export const useLeaderboard = (): UseLeaderboardReturn => {
+export const useLeaderboard = (type: LeaderboardType = '2v2'): UseLeaderboardReturn => {
   const [data, setData] = useState<PlayerData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('/api/leaderboard');
+      const response = await fetch(`/api/leaderboard/${type}`);
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Failed to fetch leaderboard' }));
@@ -29,15 +31,15 @@ export const useLeaderboard = (): UseLeaderboardReturn => {
       setData(Array.isArray(leaderboardData) ? leaderboardData : []);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch data');
-      console.error('Error fetching leaderboard data:', err);
+      console.error(`Error fetching ${type} leaderboard data:`, err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [type]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return {
     data,

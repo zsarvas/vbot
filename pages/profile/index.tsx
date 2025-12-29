@@ -21,7 +21,7 @@ const ProfileIndex: React.FC = () => {
       component: <div />
     },
     {
-      tab: '3v3 Leader Board',
+      tab: '1v1 Leader Board',
       component: <div />
     }
   ], []);
@@ -88,7 +88,7 @@ const ProfileIndex: React.FC = () => {
             <Title order={3} mb="md">How to View Player Profiles</Title>
             <Stack spacing="sm">
               <Text size="sm">
-                <strong>1.</strong> Navigate to any leaderboard (2v2 or 3v3)
+                <strong>1.</strong> Navigate to any leaderboard (2v2 or 1v1)
               </Text>
               <Text size="sm">
                 <strong>2.</strong> Click on any player&apos;s name in the table

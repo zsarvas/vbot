@@ -69,7 +69,7 @@ const PlayerProfile: React.FC = () => {
       component: <div />
     },
     {
-      tab: '3v3 Leader Board',
+      tab: '1v1 Leader Board',
       component: <div />
     }
   ], []);

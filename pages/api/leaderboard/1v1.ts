@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PlayerData } from '../../types/PlayerTypes';
+import { PlayerData } from '../../../types/PlayerTypes';
 
 const API_BASE_URL = 'http://165.227.14.250';
 
@@ -19,21 +19,19 @@ export default async function handler(
       return res.status(500).json({ error: 'Server configuration error' });
     }
 
-    const response = await fetch(`${API_BASE_URL}/api/leaderboard`, {
+    const response = await fetch(`${API_BASE_URL}/api/leaderboard/1v1`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'X-API-Key': apiKey, // Adjust header name if your API expects a different one
-        // Alternative: 'Authorization': `Bearer ${apiKey}`,
-        // Alternative: 'API-Key': apiKey,
       },
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Leaderboard API error:', response.status, errorText);
+      console.error('Leaderboard 1v1 API error:', response.status, errorText);
       return res.status(response.status).json({ 
-        error: `Failed to fetch leaderboard: ${response.statusText}` 
+        error: `Failed to fetch 1v1 leaderboard: ${response.statusText}` 
       });
     }
 
@@ -48,9 +46,9 @@ export default async function handler(
     res.status(200).json(sortedData);
 
   } catch (error) {
-    console.error('Error fetching leaderboard:', error);
+    console.error('Error fetching 1v1 leaderboard:', error);
     res.status(500).json({ 
-      error: error instanceof Error ? error.message : 'Failed to fetch leaderboard' 
+      error: error instanceof Error ? error.message : 'Failed to fetch 1v1 leaderboard' 
     });
   }
 }

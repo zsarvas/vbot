@@ -15,7 +15,7 @@ export interface PlayerStats {
   totalGames: number;
 }
 
-export type TabType = "Home" | "2v2 Leader Board" | "3v3 Leader Board";
+export type TabType = "Home" | "2v2 Leader Board" | "1v1 Leader Board";
 
 export interface TabInfo {
   tab: TabType;

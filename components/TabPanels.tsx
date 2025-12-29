@@ -99,17 +99,17 @@ export const Leaderboard2v2Panel = memo<TabPanelProps>(({ playerData, loading, e
 
 Leaderboard2v2Panel.displayName = 'Leaderboard2v2Panel';
 
-export const Leaderboard3v3Panel = memo<TabPanelProps>(({ playerData, loading, error }) => {
+export const Leaderboard1v1Panel = memo<TabPanelProps>(({ playerData, loading, error }) => {
   return (
     <Container size="xl" px="md">
       <TableComponent 
         playerData={playerData}
         loading={loading}
         error={error}
-        title="3v3 Leaderboard"
+        title="1v1 Leaderboard"
       />
     </Container>
   );
 });
 
-Leaderboard3v3Panel.displayName = 'Leaderboard3v3Panel'; 
+Leaderboard1v1Panel.displayName = 'Leaderboard1v1Panel'; 
