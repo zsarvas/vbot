@@ -37,9 +37,34 @@ export default async function handler(
 
     const data = await response.json();
     
-    // Ensure data is an array and sort by MMR descending
+    // Transform API response to match frontend PlayerData format
+    // API returns: { id, mmr, numWins, numLosses, name, discordId, matchId, ... }
+    // Frontend expects: { id, MMR, Wins, Losses, Name, DiscordId, MatchUID, ... }
     const leaderboardData = Array.isArray(data) ? data : [];
-    const sortedData = leaderboardData.sort((a: PlayerData, b: PlayerData) => 
+    const transformedData: PlayerData[] = leaderboardData.map((item: any) => {
+      const discordId = typeof item.discordId === 'number' 
+        ? item.discordId 
+        : (item.discordId ? parseInt(String(item.discordId), 10) : 0);
+      
+      return {
+        id: discordId,
+        DiscordId: discordId,
+        Name: String(item.name || item.mentionName || item.id || ''),
+        MMR: typeof item.mmr === 'number' 
+          ? item.mmr 
+          : (item.mmr ? parseFloat(String(item.mmr)) : 0),
+        Wins: typeof item.numWins === 'number' 
+          ? item.numWins 
+          : (item.numWins ? parseInt(String(item.numWins), 10) : 0),
+        Losses: typeof item.numLosses === 'number' 
+          ? item.numLosses 
+          : (item.numLosses ? parseInt(String(item.numLosses), 10) : 0),
+        MatchUID: String(item.matchId || item.MatchUID || ''),
+      };
+    });
+    
+    // Sort by MMR descending
+    const sortedData = transformedData.sort((a: PlayerData, b: PlayerData) => 
       (b.MMR || 0) - (a.MMR || 0)
     );
 
